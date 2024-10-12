@@ -94,664 +94,371 @@ El software es el conjunto de programas informáticos que actúan sobre el hardw
 
 ---
 
-## transition: fade-out
+## 2. Relación Hardware-Software
 
-# What is Slidev?
+<br>
+Esta relación se puede manifestar de dos puntos de vista:
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
-
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - themes can be shared and re-used as npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embed Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export to PDF, PPTX, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - virtually anything that's possible on a webpage is possible in Slidev
-  <br>
-  <br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/features/slide-scope-style
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
-
----
-
-transition: slide-up
-level: 2
-
----
-
-# Navigation
-
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/ui#navigation-bar)
-
-## Keyboard Shortcuts
-
-|                                                    |                             |
-| -------------------------------------------------- | --------------------------- |
-| <kbd>right</kbd> / <kbd>space</kbd>                | next animation or slide     |
-| <kbd>left</kbd> / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd>                                      | previous slide              |
-| <kbd>down</kbd>                                    | next slide                  |
-
-<!-- https://sli.dev/guide/animations.html#click-animation -->
-
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
-
----
-
-layout: two-cols
-layoutClass: gap-16
-
----
-
-# Table of contents
-
-You can use the `Toc` component to generate a table of contents for your slides:
-
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
-
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
-
-::right::
-
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
-
----
-
-layout: image-right
-image: https://cover.sli.dev
-
----
-
-# Code
-
-Use code snippets and get the highlighting directly, and even types hover!
-
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from "vue";
-
-const count = ref(0);
-const doubled = computed(() => count.value * 2);
-
-doubled.value = 2;
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-
-[Learn more](https://sli.dev/features/line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-
-## level: 2
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move {lines: true}
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-});
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: "John Doe",
-        books: [
-          "Vue 2 - Advanced Guide",
-          "Vue 3 - Basic Guide",
-          "Vue 4 - The Mystery",
-        ],
-      },
-    };
-  },
-};
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: "John Doe",
-      books: [
-        "Vue 2 - Advanced Guide",
-        "Vue 3 - Basic Guide",
-        "Vue 4 - The Mystery",
-      ],
-    },
-  }),
-};
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: "John Doe",
-  books: [
-    "Vue 2 - Advanced Guide",
-    "Vue 3 - Basic Guide",
-    "Vue 4 - The Mystery",
-  ],
-};
-</script>
-```
-````
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
+<div class="flex flex-col gap-6">
+<br>
 <div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
+- <span v-mark="{ at: 1, color: 'orange', type: 'underline' }">PV. Sistema Operativo</span>: El S.O. se encarga de coordinar el hardware actuando como intermediario con las aplicaciones que estén funcionando.
 </div>
 <div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
+- <span v-mark="{ at: 2, color: 'orange', type: 'underline' }">PV. Aplicaciones</span>: Una aplicación es un conjunto de programas que están escritos en un lenguaje que el hardware del equipo interpreta y ejecuta. Los lenguajes de programación usan sentencias legibles para el humano, pero el equipo solo puede leer 0 y 1, por lo que tiene que ocurrir una traducción para que el ordenador ejecute lo que esté escrito en el lenguaje de programación.
 </div>
 </div>
 
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
 ---
 
-# Themes
+## 3. Desarrollo de Software
 
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/guide/theme-addon#use-theme) and
-check out the [Awesome Themes Gallery](https://sli.dev/resources/theme-gallery).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
+Es el proceso que ocurre desde que se concibe una <span v-mark="{ at: 1, color: 'orange', type: 'circle' }">idea</span> hasta que un programa está implementado en el ordenador y funcionando.
 
 <br>
 
-<v-click>
-
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
-
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
-
-</v-click>
-
-<div mt-20 v-click>
-
-[Learn more](https://sli.dev/guide/animations#click-animation)
-
+<div class="flex justify-center">
+<img class="w-full h-auto rounded max-w-[400px]" src="https://www.solusoft.es/Info/Imagenes/desarrollo-de-software/img_hero.svg" alt="">
 </div>
 
 ---
 
-# Motions
-
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
-</div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
-</div>
-
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
-  }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn more](https://sli.dev/guide/animations.html#motion)
-
-</div>
-
----
-
-# LaTeX
-
-LaTeX is supported out-of-box. Powered by [KaTeX](https://katex.org/).
-
-<div h-3 />
-
-Inline $\sqrt{3x-1}+(1+x)^2$
-
-Block
-
-$$
-{1|3|all}
-\begin{aligned}
-\nabla \cdot \vec{E} &= \frac{\rho}{\varepsilon_0} \\
-\nabla \cdot \vec{B} &= 0 \\
-\nabla \times \vec{E} &= -\frac{\partial\vec{B}}{\partial t} \\
-\nabla \times \vec{B} &= \mu_0\vec{J} + \mu_0\varepsilon_0\frac{\partial\vec{E}}{\partial t}
-\end{aligned}
-$$
-
-[Learn more](https://sli.dev/features/latex)
-
----
-
-# Diagrams
-
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
-
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
-
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
-```
-
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
-```
-
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
-```
-
-```plantuml {scale: 0.7}
-@startuml
-
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
-  }
-  frame "Foo" {
-    [Frame 4]
-  }
-}
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
-```
-
-</div>
-
-Learn more: [Mermaid Diagrams](https://sli.dev/features/mermaid) and [PlantUML Diagrams](https://sli.dev/features/plantuml)
-
----
-
-foo: bar
-dragPos:
-square: 691,32,167,\_,-16
-
----
-
-dragPos:
-square: -84,0,0,0
-
----
-
-dragPos:
-square: 0,-199,0,0
-
----
-
-dragPos:
-square: NaN,NaN,NaN,NaN
-
----
-
-dragPos:
-square: 0,-52,0,0
-
----
-
-dragPos:
-square: 0,-52,0,0
-
----
-
-dragPos:
-square: 0,-52,0,0
-
----
-
-dragPos:
-square: 0,-52,0,0
-
----
-
-dragPos:
-square: NaN,NaN,NaN,NaN
-
----
-
-dragPos:
-square: 0,-390,0,0
-
----
-dragPos:
-  square: -84,0,0,0
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
+### 3.1. Ciclos de Vida de Software
 
 <br>
+<ul class="flex flex-col gap-4">
 
-###### Directive Usage
+<li> <span v-mark="{ at: 1, color: 'red', type: 'underline' }">Modelo en Cascada</span>: Sin retorno entre etapas, requiere conocer todos los requisitos.</li>
+<li> <span v-mark="{ at: 2, color: 'red', type: 'underline' }">Cascada con Realimentación</span>: Permite retroceder y corregir; ideal para proyectos con requisitos claros.</li>
+<li> <span v-mark="{ at: 3, color: 'red', type: 'underline' }">Modelos Evolutivos</span>:
+<ul class="flex flex-col gap-3 py-1">
+    <li> <span v-mark="{ at: 4, color: 'orange', type: 'underline' }">Iterativo Incremental</span>: Fases se repiten y mejoran en cada ciclo.</li>
+    <li> <span v-mark="{ at: 5, color: 'orange', type: 'underline' }">Modelo en Espiral</span>: Construcción en versiones mejoradas, incremento de funcionalidad.</li>
+  </ul>
+</li>
+<Arrow x1="0" y1="300" x2="75" y2="250" color="orange" />
+<Arrow x1="0" y1="300" x2="75" y2="290" color="orange"/>
+</ul>
 
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
+---
+
+### 3.1. Herramientas de Apoyo al Desarrollo del Software
 
 <br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="582,305,261,\_,-15"undefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefinedundefined>
-
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
+<div class="flex">
+  <div class="flex flex-col gap-6">
+    <ul class="flex flex-col gap-2"> Herramientas CASE para automatizar tareas y aumentar la productividad.
+      <li>
+        <ul>Desarrollo Rápido de Aplicaciones (RAD):
+          <li>Desarrollo iterativo, prototipos y uso de CASE.</li>
+        </ul>
+      </li>
+      <li>Beneficios: mejora en la planificación, agilidad, reutilización, estándares, y visualización gráfica de fases.</li>
+    </ul>
+    <ul class="flex flex-col gap-1"> Clasificación de herramientas CASE:
+      <li>U-CASE: Planificación y análisis de requisitos.</li>
+      <li>M-CASE: Análisis y diseño.</li>
+      <li>L-CASE: Programación, pruebas y documentación.</li>
+    </ul>
+    <p>Ejemplos: ArgoUML, Use Case Maker, ObjectBuilder.</p>
   </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
-###### Draggable Arrow
-
-```md
-<v-drag-arrow two-way />
-```
-
-<v-drag-arrow pos="67,452,253,46" two-way op70 />
+    <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/zfPntfZ/5herramientas-al-desarrollo-de-software.png" alt="">
+</div>
 
 ---
 
-src: ./pages/imported-slides.md
-hide: false
+### 4. Lenguajes de programación
+
+<br>
+<div class="flex gap-8">
+  <div class="flex flex-col gap-5">
+    <ul>Idioma artificial para que el hardware entienda y ejecute tareas.</ul>
+    <ul class="flex flex-col gap-2">Tipos de Lenguajes:
+      <li>Lenguaje Máquina</li>
+      <li>Lenguaje Ensamblador</li>
+      <li>Lenguajes de Alto Nivel</li>
+      <li>Lenguajes Visuales</li>
+    </ul>
+  </div>
+  <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/cCCrZLb/6-Lenguajes-de-programacion.png" alt="">
+</div>
 
 ---
 
+### 4.1. Concepto y Clasificación de los Lenguajes de Programación
+
+<br>
+<div class="flex flex-col gap-2 items-center">
+<p>La elección del lenguaje de programación depende de las características del problema.</p>
+<p>Clasificación de lenguajes según:</p>
+<div class="flex content-start gap-2">
+  <ul class="flex flex-col gap-1">Proximidad al lenguaje humano:
+    <li>Alto nivel (más cercano al razonamiento humano).</li>
+    <li>Bajo nivel (más cercano al funcionamiento interno de la computadora: Ensamblador, Máquina).</li>
+  </ul>
+  <ul>Técnica de programación:
+    <li>Estructurados (ej. Pascal, C).</li>
+    <li>Orientados a objetos (ej. C++, Java).</li>
+    <li>Visuales (ej. Visual Basic.Net).</li>
+  </ul>
+</div>
+</div>
 
 ---
 
-# Monaco Editor
+### 4.2. Lenguajes de Programación Estructurados
 
-Slidev provides built-in Monaco Editor support.
-
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from "vue";
-import { emptyArray } from "./external";
-
-const arr = ref(emptyArray(10));
-```
-
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
-
-```ts {monaco-run}
-import { version } from "vue";
-import { emptyArray, sayHello } from "./external";
-
-sayHello();
-console.log(`vue ${version}`);
-console.log(
-  emptyArray<number>(10).reduce(
-    (fib) => [...fib, fib.at(-1)! + fib.at(-2)!],
-    [1, 1],
-  ),
-);
-```
+<br>
+<div class="flex gap-2 items-center">
+  <div class="flex flex-col">
+    <p>Definición de programación estructurada y tipos de sentencias: secuenciales, selectivas y repetitivas.</p>
+    <p><span v-mark="{ at: 1, color: 'green', type: 'underline' }">Ventajas</span>: Lectura y mantenimiento sencillo, estructura clara.</p>
+    <p><span v-mark="{ at: 2, color: 'red', type: 'underline' }">Inconvenientes</span>: Dificultad en manejar programas grandes, falta de reutilización eficaz de código.</p>
+  </div>
+  <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/CMdZgcr/10lenguaje-programacion-estructurado.png" alt="">
+</div>
 
 ---
 
-layout: center
-class: text-center
+### 4.3. Lenguajes de Programación Orientados a Objetos
+
+<br>
+<div class="flex gap-2 items-center">
+  <div class="flex flex-col">
+    <p>Enfoque basado en objetos que colaboran para realizar acciones. Reutilizables para futuros proyectos.</p>
+    <p><span v-mark="{ at: 1, color: 'green', type: 'underline' }">Ventajas</span>: Reutilización del código y facilidad para depuración.</p>
+    <ul><span v-mark="{ at: 2, color: 'orange', type: 'underline' }">Características</span>:
+      <li>Atributos y clases.</li>
+      <li>Comunicación entre objetos mediante métodos.</li>
+    </ul>
+  </div>
+  <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/gZJQGxF/11leng-orientado-a-objetos.png" alt="">
+</div>
 
 ---
 
-# Learn More
+## 5. Fases en el Desarrollo de Software
 
-[Documentation](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/resources/showcases)
+<br>
+<br>
+<div class="flex ">
+  <ol class="flex flex-col gap-3">
+    <li>Análisis de requisitos: Funcionales y no funcionales.</li>
+    <li>Diseño: Modelo funcional-estructural, selección de lenguajes y SGBD.</li>
+    <li>Codificación</li>
+    <li>Pruebas</li>
+    <li>Documentación</li>
+    <li>Explotación</li>
+    <li>Mantenimiento</li>
+  </ol>
+ <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/kyKcc66/12fases-desarrollo-de-software.png" alt="">
+</div>
 
-<PoweredBySlidev mt-10 />
+---
+
+### 5.1. Análisis de Requisitos
+
+<br>
+<div class="flex gap-2 items-center">
+  <div>
+    <p>Es la base del desarrollo del proyecto.</p>
+    <ul class="flex flex-col gap-4">
+      <li><span v-mark="{ at: 1, color: 'green', type: 'underline' }">Requisitos Funcionales</span>: 
+        <ul>
+          <li>Funciones, respuesta ante entradas, comportamiento en situaciones inesperadas</li>
+        </ul>
+      </li>
+      <li><span v-mark="{ at: 2, color: 'red', type: 'underline' }">Requisitos No Funcionales</span>:
+          <ul>
+          <li>Tiempos de respuesta, legislación, manejo de simultaneidad</li>
+          </ul>
+      </li>
+      <li>Comunicación clave entre analista y cliente</li>
+      <li>Documento ERS (Especificación de Requisitos Software)</li>
+    </ul>
+  </div>
+  <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/J2F1ycz/13analisis-requisitos.png" alt="">
+</div>
+
+---
+
+### 5.2. Diseño del Software
+
+<br>
+<div class="flex">
+  <ul class="flex flex-col self-center gap-4">
+    <li>Creación del modelo funcional-estructural y división en partes.</li>
+    <li>Decisiones importantes: entidades y relaciones de bases de datos, selección de lenguajes y SGBD.</li>
+  </ul>
+  <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/WKKz8Lm/14dise-osoftware.png" alt="">
+</div>
+
+---
+
+### 5.3. Codificación. Tipos de código
+
+<br>
+<div>
+<p>La codificación es convertir ideas o soluciones en instrucciones usando un lenguaje de programación, creando el código fuente que el ordenador lo ejecute.</p>
+<div class="flex">
+<div class="grid grid-cols-2 gap-1 p-3 border border-gray-300 rounded-lg text-center">
+  <!-- Encabezados -->
+  <div class="font-semibold bg-orange  rounded">Características deseables de todo código</div>
+  <div class="font-semibold bg-orange  rounded">Estados del código</div>
+
+  <!-- Fila 1 -->
+  <div class=" border-b border-gray-300">Modularidad: dividirlo en trozos pequeños</div>
+  <div class=" border-b border-gray-300">Código fuente</div>
+
+  <!-- Fila 2 -->
+  <div class=" border-b border-gray-300">Corrección: que cumpla lo que se le solicita</div>
+  <div class=" border-b border-gray-300">Código objeto</div>
+
+  <!-- Fila 3 -->
+  <div class=" border-b border-gray-300">Fácil de leer: facilitar el desarrollo y mantenimiento futuros</div>
+  <div class=" border-b border-gray-300">Código ejecutable</div>
+
+  <!-- Fila 4 -->
+  <div class=" border-b border-gray-300">Eficiencia: un buen uso de los recursos</div>
+  <div class=" border-b border-gray-300"></div>
+
+  <!-- Fila 5 -->
+  <div class="">Portabilidad: implementación en cualquier equipo</div>
+  <div></div>
+</div>
+
+<img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/BNyW1BG/1image-removebg-preview-5.png" alt="">
+</div>
+</div>
+
+---
+
+### 5.4. Fases en la obtención de código
+
+<br>
+<img class="w-full h-auto rounded max-w-[800px] flex self-center" src="https://i.ibb.co/fkr6Lmg/14-Fasesobtencioncodigo.png" alt="">
+
+---
+
+### 5.5. Máquinas virtuales
+
+<br>
+<div class="flex flex-col gap-4">
+  <p>Es la ejecución de un ordenador completamente con el software en lugar de un hardware físico.</p>
+  <ul class="flex flex-col gap-3">Características:
+    <li>Portabilidad: Permiten que las aplicaciones se puedan ejecutar en diferentes sistemas.</li>
+    <li>Gestión de Memoria: Asigna memoria para los objetos creados y liberan la memoria no utilizada.</li>
+    <li>Interacción con el Sistema Huésped: Facilitan la comunicación con el sistema operativo para controlar los dispositivos de hardware.</li>
+    <li>Seguridad: Garantizan que las aplicaciones cumplan con las normativas de seguridad.</li>
+  </ul>
+</div>
+
+---
+
+### 5.5.1. Frameworks
+
+<br>
+<br>
+<div class="flex gap-2 items-center">
+  <div class="flex flex-col gap-1">
+    <p>Se trata de una plataforma software donde están definidos programas soporte, bibliotecas, lenguaje interpretado, etc., que ayuda a desarrollar y unir los diferentes módulos o partes de un proyecto.</p>
+    <p><span v-mark="{ at: 1, color: 'green', type: 'underline' }">Ventajas</span>: desarrollo rápido, reutilización del código, diseño uniforme y portabilidad de aplicaciones.</p>
+    <p><span v-mark="{ at: 2, color: 'red', type: 'underline' }">Desventajas</span>: dependencia del código y su instalación consume bastantes recursos.</p>
+  </div>
+  <img class="w-full h-auto rounded max-w-[300px] flex self-center" src="https://i.ibb.co/VShYtm7/18png-clipart-laravel-black-logo-tech-companies-thumbnail.webp" alt="">
+</div>
+
+---
+
+### 5.5.2. Entornos de ejecución
+
+<br>
+<div class="flex">
+<div class="flex flex-col gap-2">
+  <p>Servicio de máquina virtual que sirve como base para la ejecución de programas.</p>
+  <p>Está formado por la máquina virtual y la API.</p>
+  <p>Funciona como intermediario entre el lenguaje fuente y el sistema operativo, y consigue ejecutar aplicaciones.</p>
+</div>
+<div class="flex flex-col gap-5">
+  <img class="w-full h-auto rounded max-w-[400px] flex self-center" src="https://i.ibb.co/tbmWWtf/19maxresdefault.webp" alt="">
+  <img class="w-full h-auto rounded max-w-[400px] flex self-center" src="https://i.ibb.co/q7YTXPr/1698242399109.png" alt="">
+</div>
+</div>
+
+---
+
+### 5.6. Pruebas
+
+<br>
+<div class="flex">
+  <ul class="flex flex-col gap-5">En el desarrollo de software, se realizan tres tipos principales de pruebas:
+    <li>Pruebas unitarias: Se prueban individualmente las diferentes partes del software para verificar su funcionamiento de manera aislada.</li>
+    <li>Pruebas de integración: Tras superar las pruebas unitarias, se verifica cómo funcionan todas las partes del sistema juntas e interrelacionadas.</li>
+    <li>Beta Test: Es la prueba final, realizada en el entorno real del cliente, bajo condiciones normales de uso, para asegurar que el software funcione correctamente en producción.</li>
+  </ul>
+<div class="flex flex-col gap-5">
+  <img class="w-full h-auto rounded max-w-[600px] flex self-center" src="https://i.ibb.co/gVcw3q2/20-Integration-testing-e77bcac7ff.webp" alt="">
+  <img class="w-full h-auto rounded max-w-[600px] flex self-center" src="https://i.ibb.co/MVDt9jN/20joven-empresario-que-usa-la-tableta-digital-mientras-trabaja-en-la-oficina-de-negocios.webp" alt="">
+</div>
+</div>
+
+---
+
+### 5.7. Documentación
+
+<br>
+<p>En el desarrollo de software, es crucial documentar todas las etapas para informar a los usuarios y facilitar futuras revisiones del proyecto. Los tres documentos principales son:</p>
+
+<br>
+<div class="flex justify-around">
+  <ol class="flex flex-col gap-2">
+    <li>Guía técnica</li>
+    <li>Guía de uso</li>
+    <li>Guía de instalación</li>
+  </ol>
+<img class="w-full h-auto rounded max-w-[400px]" src="https://i.ibb.co/kcqQRPH/Trello-Emblema-1300x867.png" alt="">
+</div>
+
+---
+
+### 5.8. Explotación
+
+<br>
+<br>
+<ul class="flex flex-col gap-5">Es la fase en la que los usuarios finales conocen y comienzan a utilizar la aplicación. Se compone de:
+  <li>Instalación: Proceso de instalar la aplicación en el equipo del cliente</li>
+  <li>Puesta a punto: Configuración necesaria para que la aplicación funcione correctamente.</li>
+  <li>Funcionamiento: La aplicación en uso en el entorno del cliente.</li>
+</ul>
+
+---
+
+### 5.9. Mantenimiento
+
+<br>
+<div class="flex">
+  <div class="flex flex-col gap-4">
+    <p>Proceso de control, mejora y optimización del software.</p>
+    <ul class="flex flex-col gap-4">Tipos de Cambios:
+      <li>Perfectivos: Mejoran la funcionalidad del software.</li>
+      <li>Evolutivos: Responden a nuevas necesidades del cliente.</li>
+      <li>Adaptativos: Ajustes y actualizaciones.</li>
+      <li>Correctivos: Solucionar errores.</li>
+    </ul>
+  </div>
+  <img class="w-full h-auto rounded max-w-[400px]" src="https://i.ibb.co/6WgKFBL/Padre-imagen-mantenimiento-3.png" alt="">
+</div>
+
+---
+
+<div class="flex flex-col gap-8 items-center">
+  <h1>¡Gracias por la atención!</h1>
+  <div class="flex flex-col gap-1 items-center">
+  <h2>Trabajo realizado por:</h2>
+    <p>Elena Expósito Lara</p>
+    <p>Alberto Nieto Lozano</p>
+    <p>Gregorio Ruiz López</p>
+    <p>Antonio Rodríguez Cortés</p>
+    <p>Daniel Santaflorentina Picchi</p>
+  </div>
+</div>
