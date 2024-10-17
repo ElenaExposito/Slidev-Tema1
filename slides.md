@@ -346,10 +346,10 @@ Es el proceso que ocurre desde que se concibe una <span v-mark="{ at: 1, color: 
 <div class="flex flex-col gap-4">
   <p>Es la ejecución de un ordenador completamente con el software en lugar de un hardware físico.</p>
   <ul class="flex flex-col gap-3">Características:
-    <li>Portabilidad: Permiten que las aplicaciones se puedan ejecutar en diferentes sistemas.</li>
-    <li>Gestión de Memoria: Asigna memoria para los objetos creados y liberan la memoria no utilizada.</li>
-    <li>Interacción con el Sistema Huésped: Facilitan la comunicación con el sistema operativo para controlar los dispositivos de hardware.</li>
-    <li>Seguridad: Garantizan que las aplicaciones cumplan con las normativas de seguridad.</li>
+    <li><span v-mark="{ at: 1, color: 'orange', type: 'underline' }">Portabilidad</span>: Permiten que las aplicaciones se puedan ejecutar en diferentes sistemas.</li>
+    <li><span v-mark="{ at: 2, color: 'orange', type: 'underline' }">Gestión de Memoria</span>: Asigna memoria para los objetos creados y liberan la memoria no utilizada.</li>
+    <li><span v-mark="{ at: 3, color: 'orange', type: 'underline' }">Interacción con el Sistema Huésped</span>: Facilitan la comunicación con el sistema operativo para controlar los dispositivos de hardware.</li>
+    <li><span v-mark="{ at: 4, color: 'orange', type: 'underline' }">Seguridad</span>: Garantizan que las aplicaciones cumplan con las normativas de seguridad.</li>
   </ul>
 </div>
 
@@ -392,9 +392,9 @@ Es el proceso que ocurre desde que se concibe una <span v-mark="{ at: 1, color: 
 <br>
 <div class="flex">
   <ul class="flex flex-col gap-5">En el desarrollo de software, se realizan tres tipos principales de pruebas:
-    <li>Pruebas unitarias: Se prueban individualmente las diferentes partes del software para verificar su funcionamiento de manera aislada.</li>
-    <li>Pruebas de integración: Tras superar las pruebas unitarias, se verifica cómo funcionan todas las partes del sistema juntas e interrelacionadas.</li>
-    <li>Beta Test: Es la prueba final, realizada en el entorno real del cliente, bajo condiciones normales de uso, para asegurar que el software funcione correctamente en producción.</li>
+    <li><span v-mark="{ at: 1, color: 'orange', type: 'underline' }">Pruebas unitarias</span>: Se prueban individualmente las diferentes partes del software para verificar su funcionamiento de manera aislada.</li>
+    <li><span v-mark="{ at: 2, color: 'orange', type: 'underline' }">Pruebas de integración</span>: Tras superar las pruebas unitarias, se verifica cómo funcionan todas las partes del sistema juntas e interrelacionadas.</li>
+    <li><span v-mark="{ at: 3, color: 'orange', type: 'underline' }">Beta Test</span>: Es la prueba final, realizada en el entorno real del cliente, bajo condiciones normales de uso, para asegurar que el software funcione correctamente en producción.</li>
   </ul>
 <div class="flex flex-col gap-5">
   <img class="w-full h-auto rounded max-w-[600px] flex self-center" src="https://i.ibb.co/gVcw3q2/20-Integration-testing-e77bcac7ff.webp" alt="">
