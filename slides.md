@@ -426,9 +426,9 @@ Es el proceso que ocurre desde que se concibe una <span v-mark="{ at: 1, color: 
 <br>
 <br>
 <ul class="flex flex-col gap-5">Es la fase en la que los usuarios finales conocen y comienzan a utilizar la aplicación. Se compone de:
-  <li>Instalación: Proceso de instalar la aplicación en el equipo del cliente</li>
-  <li>Puesta a punto: Configuración necesaria para que la aplicación funcione correctamente.</li>
-  <li>Funcionamiento: La aplicación en uso en el entorno del cliente.</li>
+  <li><span v-mark="{ at: 1, color: 'orange', type: 'underline' }">Instalación</span>: Proceso de instalar la aplicación en el equipo del cliente</li>
+  <li><span v-mark="{ at: 2, color: 'orange', type: 'underline' }">Puesta a puntos</span>: Configuración necesaria para que la aplicación funcione correctamente.</li>
+  <li><span v-mark="{ at: 3, color: 'orange', type: 'underline' }">Funcionamiento</span>: La aplicación en uso en el entorno del cliente.</li>
 </ul>
 
 ---
@@ -440,10 +440,10 @@ Es el proceso que ocurre desde que se concibe una <span v-mark="{ at: 1, color: 
   <div class="flex flex-col gap-4">
     <p>Proceso de control, mejora y optimización del software.</p>
     <ul class="flex flex-col gap-4">Tipos de Cambios:
-      <li>Perfectivos: Mejoran la funcionalidad del software.</li>
-      <li>Evolutivos: Responden a nuevas necesidades del cliente.</li>
-      <li>Adaptativos: Ajustes y actualizaciones.</li>
-      <li>Correctivos: Solucionar errores.</li>
+      <li><span v-mark="{ at: 1, color: 'orange', type: 'underline' }">Perfectivos</span>: Mejoran la funcionalidad del software.</li>
+      <li><span v-mark="{ at: 2, color: 'orange', type: 'underline' }">Evolutivos</span>: Responden a nuevas necesidades del cliente.</li>
+      <li><span v-mark="{ at: 3, color: 'orange', type: 'underline' }">Adaptativos</span>: Ajustes y actualizaciones.</li>
+      <li><span v-mark="{ at: 4, color: 'orange', type: 'underline' }">Correctivos</span>: Solucionar errores.</li>
     </ul>
   </div>
   <img class="w-full h-auto rounded max-w-[400px]" src="https://i.ibb.co/6WgKFBL/Padre-imagen-mantenimiento-3.png" alt="">
